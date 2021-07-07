@@ -7,6 +7,7 @@ import { ApolloQueryResult } from "@apollo/client";
 import { IPokemonsResp } from "@interfaces";
 import { usePokemons, PokemonsQuery, PokemonsQueryVariable } from "@gql/hooks";
 import { initializeApollo } from "@gql/helper";
+import { useInfiniteScroll } from "@hooks";
 
 interface Props {
   pokemons: ApolloQueryResult<IPokemonsResp>;
@@ -15,23 +16,7 @@ interface Props {
 const Home: FC<Props> = () => {
   const { data, loading, error, fetchMore } = usePokemons();
 
-  useEffect(() => {
-    const onScroll = () => {
-      const { scrollTop, scrollHeight, clientHeight } =
-        document.documentElement;
-
-      if (
-        scrollTop + clientHeight >= scrollHeight - 3 &&
-        typeof data !== "undefined" &&
-        !loading
-      ) {
-        fetchMore();
-      }
-    };
-
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  });
+  useInfiniteScroll(!loading, fetchMore);
 
   return (
     <MainLayout>

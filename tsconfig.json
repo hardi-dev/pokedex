@@ -21,6 +21,7 @@
       "@layouts": ["layouts/index"],
       "@libs/*": ["libs/*"],
       "@gql/*": ["libs/gql/*"],
+      "@hooks": ["libs/hooks"],
       "@interfaces": ["interfaces"],
       "@theme": ["libs/theme/theme.ts"],
       "@utils": ["libs/utils"]
