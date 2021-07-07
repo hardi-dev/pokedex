@@ -1,12 +1,10 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import { GetServerSideProps } from "next";
 import { MainLayout } from "@layouts";
 import { PokemonList } from "@containers";
-import { Container, CardCharacter } from "@comps";
-import { getPokemons } from "@gql/queries";
+import { Container } from "@comps";
 import { ApolloQueryResult } from "@apollo/client";
-import { IPokemonsResp, IPokemonBase } from "@interfaces";
-import { useRouter } from "next/router";
+import { IPokemonsResp } from "@interfaces";
 import { usePokemons, PokemonsQuery, PokemonsQueryVariable } from "@gql/hooks";
 import { initializeApollo } from "@gql/helper";
 
