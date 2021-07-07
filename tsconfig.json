@@ -16,10 +16,14 @@
     "baseUrl": "src",
     "paths": {
       "@src/*":["*"],
-      "@comps/*": ["components/*"],
-      "@containers/*": ["containers/*"],
-      "@layouts/*": ["layouts/*"],
-      "@lib/*": ["lib/*"],
+      "@comps": ["components"],
+      "@containers": ["containers"],
+      "@layouts": ["layouts/index"],
+      "@libs/*": ["libs/*"],
+      "@gql/*": ["libs/gql/*"],
+      "@interfaces": ["interfaces"],
+      "@theme": ["libs/theme/theme.ts"],
+      "@utils": ["libs/utils"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

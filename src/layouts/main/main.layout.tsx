@@ -1,12 +1,14 @@
 import { FC } from "react";
 import { StyledMainLayout, StyledLayoutWrap } from "./main.styles";
-import { Navbar } from "@comps/index";
+import { Navbar, Wrapper } from "@comps";
 
 const MainLayout: FC = ({ children, ...restProps }) => {
   return (
     <StyledLayoutWrap>
       <Navbar />
-      <StyledMainLayout {...restProps}>{children}</StyledMainLayout>
+      <StyledMainLayout {...restProps}>
+        <Wrapper>{children}</Wrapper>
+      </StyledMainLayout>
     </StyledLayoutWrap>
   );
 };
