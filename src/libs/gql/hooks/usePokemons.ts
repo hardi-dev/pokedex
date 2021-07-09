@@ -1,6 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import { client } from "../helper";
-import { IPokemonsResp, IPokemonBase } from "@interfaces";
+import { IPokemonsResp } from "@interfaces";
 
 export const PokemonsQuery = gql`
   query pokemons($limit: Int, $offset: Int) {

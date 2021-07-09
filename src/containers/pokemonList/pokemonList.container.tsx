@@ -2,6 +2,7 @@ import { FC } from "react";
 import { IPokemonBase } from "@interfaces";
 import { StyledListWrapper, StyledListItem } from "./pokemonList.styles";
 import { CardCharacter } from "@comps";
+import Link from "next/link";
 
 interface Props {
   data: IPokemonBase[];
@@ -10,10 +11,12 @@ interface Props {
 const PokemonList: FC<Props> = ({ data }) => {
   return (
     <StyledListWrapper>
-      {data.map((pokemon, idx) => (
-        <StyledListItem key={idx}>
-          <CardCharacter name={pokemon.name} imgURL={pokemon.image} />
-        </StyledListItem>
+      {data.map(({ name, image }, idx) => (
+        <Link href={`detail/${name}`} key={idx} passHref>
+          <StyledListItem as="a">
+            <CardCharacter name={name} imgURL={image} />
+          </StyledListItem>
+        </Link>
       ))}
     </StyledListWrapper>
   );
