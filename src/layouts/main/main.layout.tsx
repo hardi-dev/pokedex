@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useContext, useEffect } from "react";
 import {
   StyledLayoutWrap,
   StyledContainer,
@@ -11,8 +11,24 @@ import {
 import Image from "next/image";
 import { Scroller } from "@comps";
 import { Navigation } from "@containers";
+import { DispatchContext, MyPokemonsContext } from "@context";
+import { useRouter } from "next/router";
 
-const MainLayout: FC = ({ children, ...restProps }) => {
+const MainLayout: FC = ({ children }) => {
+  const { pathname } = useRouter();
+  const dispatch = useContext(DispatchContext);
+  const { selectedPokemon } = useContext(MyPokemonsContext);
+
+  useEffect(() => {
+    dispatch({ type: "RESET_SELECTED_POKEMON" });
+  }, [dispatch, pathname]);
+
+  const handleCatch = () => {
+    dispatch({ type: "SET_CATCH_STATUS", payload: "loading" });
+    dispatch({ type: "CATCH_POKEMON", payload: selectedPokemon });
+    console.log("selected", selectedPokemon);
+  };
+
   return (
     <StyledLayoutWrap>
       <StyledContainer>
@@ -28,7 +44,7 @@ const MainLayout: FC = ({ children, ...restProps }) => {
             </StyledScreenInner>
           </StyledScreen>
           <StyledNavigationContainer>
-            <Navigation />
+            <Navigation onCatch={handleCatch} />
           </StyledNavigationContainer>
         </StyledPanel>
       </StyledContainer>

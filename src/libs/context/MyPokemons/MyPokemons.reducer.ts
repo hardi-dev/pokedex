@@ -1,5 +1,10 @@
 import { IMyPokemonsState, TMyPokemonsActions } from "./MyPokemons.types";
-import { catchPokemon, releasePokemon } from "./MyPokemons.action";
+import {
+  catchPokemon,
+  releasePokemon,
+  setSelectedPokemon,
+  resetSelectedPokeon,
+} from "./MyPokemons.action";
 
 export const myPokemonsReducers = (
   state: IMyPokemonsState,
@@ -7,9 +12,15 @@ export const myPokemonsReducers = (
 ): IMyPokemonsState => {
   switch (action.type) {
     case "CATCH_POKEMON":
-      return catchPokemon(action.payload, state);
+      return catchPokemon(state, action.payload);
+    case "SET_CATCH_STATUS":
+      return { ...state, status: action.payload };
     case "RELEASE_POKEMON":
-      return releasePokemon(action.payload, state);
+      return releasePokemon(state, action.payload);
+    case "SET_SELECTED_POKEMON":
+      return setSelectedPokemon(state, action.payload);
+    case "RESET_SELECTED_POKEMON":
+      return resetSelectedPokeon(state);
     default:
       return state;
   }

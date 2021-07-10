@@ -6,9 +6,11 @@ import {
 } from "./navigation.styles";
 import Link from "next/link";
 
-interface INavigation {}
+interface INavigation {
+  onCatch: () => void;
+}
 
-const Navigation: FC<INavigation> = () => {
+const Navigation: FC<INavigation> = ({ onCatch }) => {
   return (
     <StyledNavigation>
       <Link href="/" passHref>
@@ -21,7 +23,9 @@ const Navigation: FC<INavigation> = () => {
           MY LIST
         </StyledBaseButton>
       </Link>
-      <StyledCatchButton variant="secondary">CATCH</StyledCatchButton>
+      <StyledCatchButton variant="secondary" onClick={onCatch}>
+        CATCH
+      </StyledCatchButton>
     </StyledNavigation>
   );
 };

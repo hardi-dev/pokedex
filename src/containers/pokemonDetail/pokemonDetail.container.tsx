@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useContext, useEffect } from "react";
 import { IPokemonResp } from "@interfaces";
 import {
   StyledWrapper,
@@ -11,18 +11,20 @@ import {
   StyledSectionInner,
 } from "./pokemonDetail.styles";
 import { CardCharacter } from "@comps";
+import { DispatchContext } from "@context";
 import Link from "next/link";
 
 interface Props {
   data: IPokemonResp;
 }
 
-const PokeminDetail: FC<Props> = ({
-  data: {
-    pokemon: { sprites, name, types, moves },
-  },
-}) => {
-  console.log("types", types[0].type);
+const PokeminDetail: FC<Props> = ({ data: { pokemon } }) => {
+  const dispatch = useContext(DispatchContext);
+  const { sprites, name, types, moves } = pokemon;
+
+  useEffect(() => {
+    dispatch({ type: "SET_SELECTED_POKEMON", payload: pokemon });
+  });
 
   return (
     <StyledWrapper>
