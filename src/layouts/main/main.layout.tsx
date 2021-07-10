@@ -5,6 +5,7 @@ import {
   StyledPanel,
   StyledScreen,
   StyledHeader,
+  StyledScreenInner,
   StyledNavigationContainer,
 } from "./main.styles";
 import Image from "next/image";
@@ -18,7 +19,9 @@ const MainLayout: FC = ({ children, ...restProps }) => {
           <StyledHeader>
             <Image src="/logo.svg" width={95} height={35} alt="Pokedex Logo" />
           </StyledHeader>
-          <StyledScreen>{children}</StyledScreen>
+          <StyledScreen>
+            <StyledScreenInner>{children}</StyledScreenInner>
+          </StyledScreen>
           <StyledNavigationContainer>
             <Navigation />
           </StyledNavigationContainer>

@@ -14,14 +14,14 @@ interface Props {
 }
 
 const Home: FC<Props> = () => {
-  // const { data, loading, error, fetchMore } = usePokemons();
+  const { data, loading, error, fetchMore } = usePokemons();
 
   // useInfiniteScroll(!loading, fetchMore);
 
   return (
     <MainLayout>
       <Container>
-        {/* <PokemonList data={data?.pokemons.results || []} /> */}
+        <PokemonList data={data?.pokemons.results || []} />
       </Container>
     </MainLayout>
   );

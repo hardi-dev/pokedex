@@ -42,11 +42,21 @@ export const StyledScreen = styled.div`
     right: 0px;
     top: 1%;
     height: 99%;
-    background: ${({ theme }) => theme.color.blue};
+    background: ${({ theme }) => theme.color.greenDark};
     z-index: 1;
     border-radius: 6px;
-    box-shadow: inset 0px 6px 0px ${({ theme }) => theme.color.blueDark};
+    box-shadow: inset 0px 6px 0px ${({ theme }) => theme.color.greenDarken};
   }
+`;
+
+export const StyledScreenInner = styled.div`
+  width: 100%;
+  height: calc(100% - 2rem);
+  overflow-y: auto;
+  z-index: 4;
+  position: relative;
+  margin: 1rem 0;
+  padding: 1rem 0;
 `;
 
 export const StyledNavigationContainer = styled.div`

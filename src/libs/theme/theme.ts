@@ -22,6 +22,9 @@ export const color: TColor = {
   blueDark: "#205591",
   red: "#E84926",
   redDark: "#9D2315",
+  green: "#00E9B4",
+  greenDark: "#1B6F6F",
+  greenDarken: "#004040",
 };
 
 const theme: Theme = {
