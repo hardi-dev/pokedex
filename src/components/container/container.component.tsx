@@ -1,8 +1,18 @@
-import { FC } from "react";
-import { StyledContainer } from "./container.styles";
+import styled from "@emotion/styled";
+import { mq } from "@utils";
 
-const Container: FC = ({ children, ...restProps }) => {
-  return <StyledContainer>{children}</StyledContainer>;
-};
+export const Container = styled.div`
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+
+  ${mq("md")} {
+    max-width: ${(props) => props.theme.breakpoints.md}px;
+  }
+
+  ${mq("lg")} {
+    max-width: ${(props) => props.theme.breakpoints.lg}px;
+  }
+`;
 
 export default Container;

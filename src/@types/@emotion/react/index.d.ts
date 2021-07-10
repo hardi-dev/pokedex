@@ -1,15 +1,24 @@
 import "@emotion/react";
 
 declare module "@emotion/react" {
+  export interface TColor {
+    brandLighten: string;
+    brandLight: string;
+    brand: string;
+    brandDark: string;
+    brandDarken: string;
+    white: string;
+    primaryLight: string;
+    primary: string;
+    primaryDark: string;
+    black: string;
+    blue: string;
+    blueDark: string;
+    red: string;
+    redDark: string;
+  }
   export interface Theme {
-    color: {
-      brandLighten: string;
-      brandLight: string;
-      brand: string;
-      brandDark: string;
-      brandDarken: string;
-      white: string;
-    };
+    color: TColor;
     breakpoints: {
       sm: number;
       md: number;

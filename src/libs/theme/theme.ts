@@ -1,4 +1,4 @@
-import { Theme } from "@emotion/react";
+import { Theme, TColor } from "@emotion/react";
 
 export const breakpoints = {
   sm: 640,
@@ -7,13 +7,21 @@ export const breakpoints = {
   xl: 1280,
 };
 
-export const color = {
+export const color: TColor = {
   brandLighten: "#81EDF9",
   brandLight: "#20aab9",
   brand: "#46C3FD",
   brandDark: "#3BB3EA",
   brandDarken: "#06505d",
   white: "#FFF",
+  primaryLight: "#FCD06D",
+  primary: "#F1BA40",
+  primaryDark: "#A77E29",
+  black: "#000001",
+  blue: "#2F6EB5",
+  blueDark: "#205591",
+  red: "#E84926",
+  redDark: "#9D2315",
 };
 
 const theme: Theme = {

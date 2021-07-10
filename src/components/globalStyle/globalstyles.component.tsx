@@ -23,9 +23,14 @@ const GlobalStyle = () => (
       body {
         font-family: "Pixelation", -apple-system, BlinkMacSystemFont, "Segoe UI",
           Roboto, Arial, "Helvetica Neue", sans-serif;
-        background-color: ${theme.color.brandDark};
+        background-color: ${theme.color.primary};
+        height: 100%;
         font-size: 16px;
         line-height: 1.2;
+      }
+
+      #__next {
+        height: 100%;
       }
     `}
   />
