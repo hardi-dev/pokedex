@@ -14,7 +14,7 @@ const PokemonList: FC<Props> = ({ data }) => {
       {data.map(({ name, image }, idx) => (
         <Link href={`detail/${name}`} key={idx} passHref>
           <StyledListItem as="a">
-            <CardCharacter name={name} imgURL={image} />
+            <CardCharacter name={name} imgURL={image} catches="0" />
           </StyledListItem>
         </Link>
       ))}

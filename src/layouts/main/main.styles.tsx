@@ -18,6 +18,7 @@ export const StyledContainer = styled(Container)`
 
 export const StyledPanel = styled(Panel)`
   height: 100%;
+  min-width: ${(props) => props.theme.breakpoints.sm};
 `;
 
 export const StyledHeader = styled.div`
@@ -34,29 +35,45 @@ export const StyledScreen = styled.div`
   border: 2px solid ${({ theme }) => theme.color.black};
   position: relative;
 
-  &:after {
+  &:after,
+  &:before {
     content: "";
     display: block;
     position: absolute;
     left: 0px;
     right: 0px;
+    border-radius: 6px;
+  }
+
+  &:after {
     top: 1%;
     height: 99%;
     background: ${({ theme }) => theme.color.greenDark};
     z-index: 1;
-    border-radius: 6px;
     box-shadow: inset 0px 6px 0px ${({ theme }) => theme.color.greenDarken};
+  }
+
+  &:before {
+    top: 2%;
+    height: 98%;
+    background: linear-gradient(
+      180deg,
+      rgba(19, 91, 91, 0.3) 50%,
+      rgba(19, 91, 91, 0) 50%
+    );
+    background-size: 100% 4px;
+    background-repeat: repeat-y;
+    pointer-events: none;
+    z-index: 20;
   }
 `;
 
 export const StyledScreenInner = styled.div`
   width: 100%;
-  height: calc(100% - 2rem);
-  overflow-y: auto;
+  height: 100%;
   z-index: 4;
   position: relative;
-  margin: 1rem 0;
-  padding: 1rem 0;
+  padding: 0.7rem 0.5rem 0;
 `;
 
 export const StyledNavigationContainer = styled.div`

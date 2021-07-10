@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { mq } from "@utils";
 
 const StyledButton = styled.a<{ variant: "primary" | "secondary" }>`
   all: unset;
@@ -16,10 +17,14 @@ const StyledButton = styled.a<{ variant: "primary" | "secondary" }>`
 
   border: 2px solid ${(props) => props.theme.color.black};
   position: relative;
-  padding: 0.8rem 3rem;
   border-radius: 4px;
   background: ${({ theme }) => theme.color.primary};
   box-shadow: inset 0px 2px 0px ${({ theme }) => theme.color.primaryLight};
+  padding: 0.8rem 2rem;
+
+  ${mq("lg")} {
+    padding: 0.8rem 3rem;
+  }
 
   &:after,
   &:before {

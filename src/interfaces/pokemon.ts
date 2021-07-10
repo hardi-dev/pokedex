@@ -18,14 +18,14 @@ export interface Types {
   type: Type;
 }
 
-export interface Pokemon {
+export interface IPokemon {
   id: number;
   name: string;
   sprites: Sprites;
-  moves: Move[];
-  types: Type[];
+  moves: Moves[];
+  types: Types[];
 }
 
 export interface IPokemonResp {
-  pokemon: Pokemon;
+  pokemon: IPokemon;
 }

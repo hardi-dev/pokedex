@@ -9,7 +9,7 @@ import {
   StyledNavigationContainer,
 } from "./main.styles";
 import Image from "next/image";
-import { Navigation } from "@comps";
+import { Navigation, Scroller } from "@comps";
 
 const MainLayout: FC = ({ children, ...restProps }) => {
   return (
@@ -20,7 +20,11 @@ const MainLayout: FC = ({ children, ...restProps }) => {
             <Image src="/logo.svg" width={95} height={35} alt="Pokedex Logo" />
           </StyledHeader>
           <StyledScreen>
-            <StyledScreenInner>{children}</StyledScreenInner>
+            <StyledScreenInner>
+              <Scroller>
+                <div>{children}</div>
+              </Scroller>
+            </StyledScreenInner>
           </StyledScreen>
           <StyledNavigationContainer>
             <Navigation />

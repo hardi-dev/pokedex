@@ -1,7 +1,7 @@
 import { FC, useEffect } from "react";
 import { GetServerSideProps } from "next";
 import { MainLayout } from "@layouts";
-import { PokemonList } from "@containers";
+import { PokemonDetail as PokemonDetailContainer } from "@containers";
 import { Container, CardCharacter } from "@comps";
 import { ApolloQueryResult } from "@apollo/client";
 import { IPokemonResp } from "@interfaces";
@@ -23,10 +23,7 @@ const PokemonDetail: FC<Props> = () => {
       <Container>
         {loading && <p>Loading</p>}
         {!loading && typeof data !== "undefined" && (
-          <CardCharacter
-            name={data.pokemon.name}
-            imgURL={data.pokemon.sprites.front_default}
-          />
+          <PokemonDetailContainer data={data} />
         )}
       </Container>
     </MainLayout>

@@ -4,6 +4,7 @@ import { mq } from "@utils";
 export const StyledListWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
+  padding: 2rem 0;
 `;
 
 export const StyledListItem = styled.div`
