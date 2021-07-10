@@ -18,7 +18,7 @@ export const StyledContainer = styled(Container)`
 
 export const StyledPanel = styled(Panel)`
   height: 100%;
-  min-width: ${(props) => props.theme.breakpoints.sm};
+  min-width: 360px;
 `;
 
 export const StyledHeader = styled.div`
@@ -73,7 +73,11 @@ export const StyledScreenInner = styled.div`
   height: 100%;
   z-index: 4;
   position: relative;
-  padding: 0.7rem 0.5rem 0;
+  padding: 1rem 0.5rem 0;
+
+  ${mq("lg")} {
+    padding-top: 0.7rem;
+  }
 `;
 
 export const StyledNavigationContainer = styled.div`
