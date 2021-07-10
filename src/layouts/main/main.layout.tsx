@@ -9,7 +9,8 @@ import {
   StyledNavigationContainer,
 } from "./main.styles";
 import Image from "next/image";
-import { Navigation, Scroller } from "@comps";
+import { Scroller } from "@comps";
+import { Navigation } from "@containers";
 
 const MainLayout: FC = ({ children, ...restProps }) => {
   return (

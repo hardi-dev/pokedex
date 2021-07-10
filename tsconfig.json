@@ -24,7 +24,8 @@
       "@hooks": ["libs/hooks"],
       "@interfaces": ["interfaces"],
       "@theme": ["libs/theme/theme.ts"],
-      "@utils": ["libs/utils"]
+      "@utils": ["libs/utils"],
+      "@context": ["libs/context"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

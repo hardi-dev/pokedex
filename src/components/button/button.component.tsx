@@ -6,6 +6,7 @@ import { color } from "@theme";
 type TBtnVariant = "primary" | "secondary";
 interface IBtnProps {
   variant?: TBtnVariant;
+  disabled?: boolean;
 }
 
 const colorByVariant = (variant?: TBtnVariant) => {

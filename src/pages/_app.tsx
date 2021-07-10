@@ -4,6 +4,7 @@ import { useApollo } from "@libs/gql/helper";
 import { ApolloProvider } from "@apollo/client";
 import { GlobalStyle } from "@comps";
 import { ThemeProvider } from "@emotion/react";
+import { MyPokemonsProvider } from "@context";
 import theme from "@src/libs/theme/theme";
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -12,8 +13,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ApolloProvider client={apolloClient}>
       <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Component {...pageProps} />
+        <MyPokemonsProvider>
+          <GlobalStyle />
+          <Component {...pageProps} />
+        </MyPokemonsProvider>
       </ThemeProvider>
     </ApolloProvider>
   );
