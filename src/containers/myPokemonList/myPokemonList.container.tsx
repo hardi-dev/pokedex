@@ -1,6 +1,10 @@
 import { FC, useContext, Fragment, useState, useEffect } from "react";
 import { IOWnedPokemonFull, IOwnedPokemon } from "@interfaces";
-import { StyledListWrapper, StyledListItem } from "./myPokemonList.styles";
+import {
+  StyledListWrapper,
+  StyledListItem,
+  StyledReleaseBtn,
+} from "./myPokemonList.styles";
 import { CardCharacter } from "@comps";
 import Link from "next/link";
 import { MyPokemonsContext, DispatchContext } from "@context";
@@ -22,27 +26,32 @@ const MyPokemonList: FC = () => {
       {Object.entries(myPokemons).map(([key, pokemons], idx) => (
         <Fragment key={idx}>
           {pokemons.owned.map((pokemon) => (
-            <Link
-              href={`detail/${key}`}
-              key={`pokemon-${pokemon.timeStamp}`}
-              passHref
-            >
-              <StyledListItem as="a">
-                <CardCharacter
-                  name={pokemon.nickName}
-                  imgURL={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemons.id}.png`}
-                  nickName={key}
-                  onRelease={() =>
-                    handleOnRelease({
-                      name: key,
-                      id: pokemons.id,
-                      ...pokemon,
-                    })
-                  }
-                  isMine
-                />
-              </StyledListItem>
-            </Link>
+            <StyledListItem key={`pokemon-${pokemon.nickName}`}>
+              <StyledReleaseBtn
+                onClick={() =>
+                  handleOnRelease({
+                    name: key,
+                    id: pokemons.id,
+                    ...pokemon,
+                  })
+                }
+              >
+                X
+              </StyledReleaseBtn>
+              <Link
+                href={`detail/${key}`}
+                key={`pokemon-${pokemon.timeStamp}`}
+                passHref
+              >
+                <a>
+                  <CardCharacter
+                    name={pokemon.nickName}
+                    imgURL={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemons.id}.png`}
+                    nickName={key}
+                  />
+                </a>
+              </Link>
+            </StyledListItem>
           ))}
         </Fragment>
       ))}

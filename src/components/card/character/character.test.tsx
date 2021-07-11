@@ -15,7 +15,7 @@ describe("Card Character", () => {
     expect(container).not.toBeEmptyDOMElement();
   });
 
-  test("render as Pokemon List Item", () => {
+  test("render as Pokemon List Item | should render name, pokemon ball icon, count of catches", () => {
     const { getByTestId, queryByTestId } = render(
       <CharacterCard
         name="venusaur"

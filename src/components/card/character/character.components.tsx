@@ -8,7 +8,6 @@ import {
   StyledCatches,
   StyledCardFooter,
   StyledCover,
-  StyledReleaseBtn,
 } from "./character.styles";
 import Image from "next/image";
 
@@ -16,28 +15,18 @@ interface Props {
   name?: string;
   imgURL: string;
   catches?: string;
-  isMine?: boolean;
   nickName?: string;
-  onRelease?: () => void;
 }
 
 const CardCharacter: FC<Props> = ({
   name,
   catches,
   imgURL,
-  isMine,
   nickName,
-  onRelease,
   ...restProps
 }) => {
-  const handleOnClickRelease = () => {
-    onRelease && onRelease();
-  };
   return (
     <StyledCardCharacter {...restProps}>
-      {isMine && (
-        <StyledReleaseBtn onClick={handleOnClickRelease}>X</StyledReleaseBtn>
-      )}
       <StyledOuter>
         <StyledInner>
           <Image
