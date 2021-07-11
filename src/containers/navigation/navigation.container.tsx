@@ -6,6 +6,7 @@ import {
 } from "./navigation.styles";
 import Link from "next/link";
 import { MyPokemonsContext } from "@context";
+import { useRouter } from "next/router";
 
 interface INavigation {
   onCatch: () => void;
@@ -13,6 +14,7 @@ interface INavigation {
 
 const Navigation: FC<INavigation> = ({ onCatch }) => {
   const { catchStatus } = useContext(MyPokemonsContext);
+  const { query } = useRouter();
 
   return (
     <StyledNavigation>
@@ -30,7 +32,9 @@ const Navigation: FC<INavigation> = ({ onCatch }) => {
         as="button"
         variant="secondary"
         onClick={onCatch}
-        disabled={catchStatus !== "idle"}
+        disabled={
+          catchStatus !== "idle" || typeof query.nickname !== "undefined"
+        }
       >
         CATCH
       </StyledCatchButton>
