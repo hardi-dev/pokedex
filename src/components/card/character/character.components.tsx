@@ -40,12 +40,18 @@ const CardCharacter: FC<Props> = ({
       )}
       <StyledOuter>
         <StyledInner>
-          <Image alt={name} src={imgURL} width={92} height={92} />
+          <Image
+            alt={name}
+            src={imgURL}
+            width={92}
+            height={92}
+            data-testid="cover"
+          />
         </StyledInner>
       </StyledOuter>
       {(name || catches || nickName) && (
         <StyledMeta>
-          {name && <StyledTitle>{name}</StyledTitle>}
+          {name && <StyledTitle data-testid="name">{name}</StyledTitle>}
           {typeof catches !== "undefined" && (
             <StyledCardFooter>
               <Image
@@ -55,13 +61,16 @@ const CardCharacter: FC<Props> = ({
                 width={16}
                 height={16}
                 alt="Catches"
+                data-testid="pokemon-ball"
               />
-              <StyledCatches>{catches} Catches</StyledCatches>
+              <StyledCatches data-testid="catches-count">
+                {catches} Catches
+              </StyledCatches>
             </StyledCardFooter>
           )}
           {nickName && (
             <StyledCardFooter>
-              <StyledCatches>{nickName}</StyledCatches>
+              <StyledCatches data-testid="nickname">{nickName}</StyledCatches>
             </StyledCardFooter>
           )}
         </StyledMeta>
