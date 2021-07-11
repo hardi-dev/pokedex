@@ -10,6 +10,7 @@ import {
   StyledSectionTitle,
   StyledSectionWrapper,
   StyledSectionInner,
+  StyledSmalName,
 } from "./pokemonDetail.styles";
 import {
   CardCharacter,
@@ -28,7 +29,7 @@ interface Props {
 
 const PokeminDetail: FC<Props> = ({ data: { pokemon } }) => {
   const [nickName, setNickName] = useState("");
-  const { push } = useRouter();
+  const { push, query } = useRouter();
   const { catchStatus } = useContext(MyPokemonsContext);
   const { sprites, name, types, moves } = pokemon;
   const { addToMyList, setIdle } = useCatchPokemon(pokemon);
@@ -76,6 +77,13 @@ const PokeminDetail: FC<Props> = ({ data: { pokemon } }) => {
               <StyledChips key={`type-${type.name}`}>{type.name}</StyledChips>
             ))}
           </StyledTypesWrapper>
+          {typeof query.nickname !== "undefined" && (
+            <StyledSectionWrapper>
+              <StyledSectionTitle>
+                Nickname: {query.nickname}
+              </StyledSectionTitle>
+            </StyledSectionWrapper>
+          )}
           <StyledSectionWrapper>
             <StyledSectionTitle>Moves</StyledSectionTitle>
             <StyledSectionInner>

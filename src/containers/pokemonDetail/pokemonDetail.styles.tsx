@@ -78,3 +78,8 @@ export const StyledSectionInner = styled.div`
   column-gap: 0.5rem;
   row-gap: 1rem;
 `;
+
+export const StyledSmalName = styled.h1`
+  font-size: 1rem;
+  color: ${({ theme }) => theme.color.green};
+`;

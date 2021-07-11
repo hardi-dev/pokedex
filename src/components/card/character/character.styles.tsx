@@ -65,21 +65,3 @@ export const StyledCardFooter = styled.div`
 export const StyledMeta = styled.div`
   padding: 1.5rem 0 0;
 `;
-
-export const StyledReleaseBtn = styled.button`
-  all: unset;
-  width: 2rem;
-  height: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 0.6rem;
-  background-color: ${({ theme }) => theme.color.red};
-  color: ${({ theme }) => theme.color.white};
-  position: absolute;
-  top: -0.4rem;
-  right: 0.2rem;
-  line-height: 0;
-  text-align: center;
-  pointer-events: all;
-`;

@@ -28,6 +28,6 @@
       "@context": ["libs/context"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/card/character/character.test.js"],
   "exclude": ["node_modules"]
 }
