@@ -61,8 +61,12 @@ const StyledButton = styled.a<IBtnProps>`
     z-index: 3;
   }
 
-  &:hover {
+  &:hover:not(:disabled) {
     color: ${({ theme: { color } }) => color.white};
+  }
+
+  &:disabled {
+    cursor: not-allowed;
   }
 `;
 

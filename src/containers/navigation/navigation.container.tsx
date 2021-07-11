@@ -1,16 +1,19 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
 import {
   StyledNavigation,
   StyledBaseButton,
   StyledCatchButton,
 } from "./navigation.styles";
 import Link from "next/link";
+import { MyPokemonsContext } from "@context";
 
 interface INavigation {
   onCatch: () => void;
 }
 
 const Navigation: FC<INavigation> = ({ onCatch }) => {
+  const { catchStatus } = useContext(MyPokemonsContext);
+
   return (
     <StyledNavigation>
       <Link href="/" passHref>
@@ -23,7 +26,12 @@ const Navigation: FC<INavigation> = ({ onCatch }) => {
           MY LIST
         </StyledBaseButton>
       </Link>
-      <StyledCatchButton variant="secondary" onClick={onCatch}>
+      <StyledCatchButton
+        as="button"
+        variant="secondary"
+        onClick={onCatch}
+        disabled={catchStatus !== "idle"}
+      >
         CATCH
       </StyledCatchButton>
     </StyledNavigation>

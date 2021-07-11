@@ -39,7 +39,7 @@ const MyPokemonList: FC = () => {
                 X
               </StyledReleaseBtn>
               <Link
-                href={`detail/${key}`}
+                href={`detail/${key}?nickname=${pokemon.nickName}`}
                 key={`pokemon-${pokemon.timeStamp}`}
                 passHref
               >
