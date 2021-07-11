@@ -29,6 +29,7 @@ const StyledButton = styled.a<IBtnProps>`
   border-radius: 4px;
   box-shadow: inset 0px 2px 0px rgba(255, 255, 255, 0.2);
   padding: 0.8rem 1.5rem;
+  text-align: center;
 
   ${mq("lg")} {
     padding: 0.8rem 3rem;

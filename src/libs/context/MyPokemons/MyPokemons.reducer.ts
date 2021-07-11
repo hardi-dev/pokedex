@@ -14,7 +14,7 @@ export const myPokemonsReducers = (
     case "CATCH_POKEMON":
       return catchPokemon(state, action.payload);
     case "SET_CATCH_STATUS":
-      return { ...state, status: action.payload };
+      return { ...state, catchStatus: action.payload };
     case "RELEASE_POKEMON":
       return releasePokemon(state, action.payload);
     case "SET_SELECTED_POKEMON":

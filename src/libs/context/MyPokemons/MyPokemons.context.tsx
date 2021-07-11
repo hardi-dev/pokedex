@@ -1,10 +1,9 @@
-import { FC, createContext, useReducer } from "react";
-import { IPokemon } from "@interfaces";
+import { FC, createContext, useReducer, useEffect } from "react";
 import { IMyPokemonsState, TMyPokemonsActions } from "./MyPokemons.types";
 import { myPokemonsReducers } from "./MyPokemons.reducer";
 
 export const initialState: IMyPokemonsState = {
-  status: "idle",
+  catchStatus: "idle",
   myPokemons: [],
 };
 
@@ -14,7 +13,30 @@ const DispatchContext = createContext<(action: TMyPokemonsActions) => void>(
 );
 
 const MyPokemonsProvider: FC = ({ children }) => {
-  const [state, dispatch] = useReducer(myPokemonsReducers, initialState);
+  const [state, dispatch] = useReducer(
+    myPokemonsReducers,
+    initialState,
+    (): IMyPokemonsState => {
+      let localData: string | null = null;
+      if (typeof window !== "undefined") {
+        localData = localStorage.getItem("myPokemons");
+      }
+      return {
+        catchStatus: "idle",
+        myPokemons: localData ? JSON.parse(localData) : [],
+      };
+    }
+  );
+
+  useEffect(() => {
+    if (
+      typeof window !== "undefined" &&
+      typeof state.myPokemons !== "undefined"
+    ) {
+      localStorage.setItem("myPokemons", JSON.stringify(state.myPokemons));
+    }
+  }, [state.myPokemons]);
+
   return (
     <DispatchContext.Provider value={dispatch}>
       <MyPokemonsContext.Provider value={state}>

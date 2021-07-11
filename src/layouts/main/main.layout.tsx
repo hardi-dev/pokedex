@@ -7,27 +7,24 @@ import {
   StyledHeader,
   StyledScreenInner,
   StyledNavigationContainer,
+  StyledScrollerInner,
 } from "./main.styles";
 import Image from "next/image";
 import { Scroller } from "@comps";
 import { Navigation } from "@containers";
 import { DispatchContext, MyPokemonsContext } from "@context";
 import { useRouter } from "next/router";
+import { useCatchPokemon } from "@hooks";
 
 const MainLayout: FC = ({ children }) => {
   const { pathname } = useRouter();
   const dispatch = useContext(DispatchContext);
   const { selectedPokemon } = useContext(MyPokemonsContext);
+  const { catchPokemon } = useCatchPokemon(selectedPokemon);
 
   useEffect(() => {
     dispatch({ type: "RESET_SELECTED_POKEMON" });
   }, [dispatch, pathname]);
-
-  const handleCatch = () => {
-    dispatch({ type: "SET_CATCH_STATUS", payload: "loading" });
-    dispatch({ type: "CATCH_POKEMON", payload: selectedPokemon });
-    console.log("selected", selectedPokemon);
-  };
 
   return (
     <StyledLayoutWrap>
@@ -39,12 +36,12 @@ const MainLayout: FC = ({ children }) => {
           <StyledScreen>
             <StyledScreenInner>
               <Scroller>
-                <div>{children}</div>
+                <StyledScrollerInner>{children}</StyledScrollerInner>
               </Scroller>
             </StyledScreenInner>
           </StyledScreen>
           <StyledNavigationContainer>
-            <Navigation onCatch={handleCatch} />
+            <Navigation onCatch={catchPokemon} />
           </StyledNavigationContainer>
         </StyledPanel>
       </StyledContainer>

@@ -1,11 +1,18 @@
 import styled from "@emotion/styled";
-import { mq } from "@utils";
 
 export const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 4rem 0 2rem;
+  padding: 2rem 0;
+  height: 100%;
+`;
+
+export const StyledDetailWrapper = styled.div`
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const StyledImgWrapper = styled.div`

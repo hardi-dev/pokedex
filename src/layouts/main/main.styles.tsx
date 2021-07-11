@@ -83,3 +83,7 @@ export const StyledScreenInner = styled.div`
 export const StyledNavigationContainer = styled.div`
   margin-top: 2rem;
 `;
+
+export const StyledScrollerInner = styled.div`
+  height: 100%;
+`;

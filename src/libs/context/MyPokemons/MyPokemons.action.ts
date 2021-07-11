@@ -1,21 +1,33 @@
-import { IPokemon } from "@interfaces";
+import { IPokemon, IMyPokemon } from "@interfaces";
 import { IMyPokemonsState } from "./MyPokemons.types";
 
 export const catchPokemon = (
   state: IMyPokemonsState,
-  pokemon?: IPokemon
+  pokemon?: IMyPokemon
 ): IMyPokemonsState => {
   if (typeof pokemon === "undefined") {
     return { ...state };
   }
-  return { ...state };
+
+  const currentList = [...state.myPokemons];
+  return {
+    ...state,
+    catchStatus: "saved",
+    myPokemons: [
+      ...currentList,
+      { name: pokemon.name, nickName: pokemon.nickName },
+    ],
+  };
 };
 
 export const releasePokemon = (
   state: IMyPokemonsState,
-  pokemon: IPokemon
+  pokemon: IMyPokemon
 ): IMyPokemonsState => {
-  return { ...state };
+  const filteredMyPokemons = state.myPokemons.filter(
+    (myPokemon) => myPokemon.nickName != pokemon.nickName
+  );
+  return { ...state, myPokemons: filteredMyPokemons };
 };
 
 export const setSelectedPokemon = (
