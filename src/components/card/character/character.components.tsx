@@ -46,10 +46,12 @@ const CardCharacter: FC<Props> = ({
       {(name || catches || nickName) && (
         <StyledMeta>
           {name && <StyledTitle>{name}</StyledTitle>}
-          {catches && (
+          {typeof catches !== "undefined" && (
             <StyledCardFooter>
               <Image
-                src="/icon-pokemon-ball-flat.svg"
+                src={`/icon-pokemon-${
+                  parseInt(catches) > 0 ? "ball" : "ball-flat"
+                }.svg`}
                 width={16}
                 height={16}
                 alt="Catches"

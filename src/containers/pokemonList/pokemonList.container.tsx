@@ -1,5 +1,5 @@
-import { FC } from "react";
-import { IPokemonBase } from "@interfaces";
+import { FC, useContext } from "react";
+import { IPokemonBase, IOwnedPokemon } from "@interfaces";
 import {
   StyledListWrapper,
   StyledListItem,
@@ -8,6 +8,7 @@ import {
 } from "./pokemonList.styles";
 import { CardCharacter, PromptButton } from "@comps";
 import Link from "next/link";
+import { MyPokemonsContext } from "@context";
 
 interface Props {
   data: IPokemonBase[];
@@ -16,13 +17,27 @@ interface Props {
 }
 
 const PokemonList: FC<Props> = ({ data, fetchMore, loading }) => {
+  const { myPokemons } = useContext(MyPokemonsContext);
+
+  const getCatchesCount = (name: string): string => {
+    return String(
+      typeof myPokemons[name] !== "undefined"
+        ? myPokemons[name].owned.length
+        : 0
+    );
+  };
+
   return (
     <>
       <StyledListWrapper>
         {data.map(({ name, image }, idx) => (
           <Link href={`detail/${name}`} key={idx} passHref>
             <StyledListItem as="a">
-              <CardCharacter name={name} imgURL={image} catches="0" />
+              <CardCharacter
+                name={name}
+                imgURL={image}
+                catches={getCatchesCount(name)}
+              />
             </StyledListItem>
           </Link>
         ))}
