@@ -16,6 +16,14 @@ const Navigation: FC<INavigation> = ({ onCatch }) => {
   const { catchStatus } = useContext(MyPokemonsContext);
   const { query } = useRouter();
 
+  const dibsaleCatchButton = (): boolean => {
+    return (
+      catchStatus !== "idle" ||
+      typeof query.name === "undefined" ||
+      typeof query.nickname !== "undefined"
+    );
+  };
+
   return (
     <StyledNavigation>
       <Link href="/" passHref>
@@ -32,9 +40,7 @@ const Navigation: FC<INavigation> = ({ onCatch }) => {
         as="button"
         variant="secondary"
         onClick={onCatch}
-        disabled={
-          catchStatus !== "idle" || typeof query.nickname !== "undefined"
-        }
+        disabled={dibsaleCatchButton()}
       >
         CATCH
       </StyledCatchButton>

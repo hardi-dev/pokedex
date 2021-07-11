@@ -67,6 +67,12 @@ const StyledButton = styled.a<IBtnProps>`
 
   &:disabled {
     cursor: not-allowed;
+    background-color: #c4c4c4;
+    color: #a1a1a1;
+
+    &:after {
+      box-shadow: inset 0 -5px 0 #a1a1a1;
+    }
   }
 `;
 
