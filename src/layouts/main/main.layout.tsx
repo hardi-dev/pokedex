@@ -24,6 +24,7 @@ const MainLayout: FC = ({ children }) => {
 
   useEffect(() => {
     dispatch({ type: "RESET_SELECTED_POKEMON" });
+    dispatch({ type: "SET_CATCH_STATUS", payload: "idle" });
   }, [dispatch, pathname]);
 
   return (

@@ -3,10 +3,15 @@ import { IMyPokemon } from "@interfaces";
 import { StyledListWrapper, StyledListItem } from "./myPokemonList.styles";
 import { CardCharacter } from "@comps";
 import Link from "next/link";
-import { MyPokemonsContext } from "@context";
+import { MyPokemonsContext, DispatchContext } from "@context";
 
 const MyPokemonList: FC = () => {
   const { myPokemons } = useContext(MyPokemonsContext);
+  const dispatch = useContext(DispatchContext);
+
+  const handleOnRelease = (pokemon: IMyPokemon) => {
+    dispatch({ type: "RELEASE_POKEMON", payload: pokemon });
+  };
 
   return (
     <StyledListWrapper>
@@ -18,9 +23,11 @@ const MyPokemonList: FC = () => {
         <Link href={`detail/${name}`} key={idx} passHref>
           <StyledListItem as="a">
             <CardCharacter
-              name={name}
+              name={nickName}
               imgURL={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
-              catches="0"
+              nickName={name}
+              onRelease={() => handleOnRelease(myPokemons[idx])}
+              isMine
             />
           </StyledListItem>
         </Link>

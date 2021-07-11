@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import Image from "next/image";
 
 export const StyledCardCharacter = styled.div`
+  position: relative;
   width: 100%;
   padding: 0.6rem 0.9rem;
   background-color: ${(props) => props.theme.color.green};
@@ -48,7 +49,6 @@ export const StyledCatches = styled.p`
   font-size: 0.5rem;
   text-align: center;
   color: ${(props) => props.theme.color.greenDark};
-  margin-left: 0.5rem;
 `;
 
 export const StyledCardFooter = styled.div`
@@ -56,8 +56,30 @@ export const StyledCardFooter = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 0.5rem;
+
+  > div {
+    margin-right: 0.5rem !important;
+  }
 `;
 
 export const StyledMeta = styled.div`
   padding: 1.5rem 0 0;
+`;
+
+export const StyledReleaseBtn = styled.button`
+  all: unset;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.6rem;
+  background-color: ${({ theme }) => theme.color.red};
+  color: ${({ theme }) => theme.color.white};
+  position: absolute;
+  top: -0.4rem;
+  right: 0.2rem;
+  line-height: 0;
+  text-align: center;
+  pointer-events: all;
 `;
