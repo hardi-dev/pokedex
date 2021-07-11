@@ -4,7 +4,7 @@ import { myPokemonsReducers } from "./MyPokemons.reducer";
 
 export const initialState: IMyPokemonsState = {
   catchStatus: "idle",
-  myPokemons: [],
+  myPokemons: {},
 };
 
 const MyPokemonsContext = createContext<IMyPokemonsState>(initialState);
@@ -23,7 +23,7 @@ const MyPokemonsProvider: FC = ({ children }) => {
       }
       return {
         catchStatus: "idle",
-        myPokemons: localData ? JSON.parse(localData) : [],
+        myPokemons: localData ? JSON.parse(localData) : {},
       };
     }
   );
@@ -35,7 +35,7 @@ const MyPokemonsProvider: FC = ({ children }) => {
     ) {
       localStorage.setItem("myPokemons", JSON.stringify(state.myPokemons));
     }
-  }, [state.myPokemons]);
+  }, [state]);
 
   return (
     <DispatchContext.Provider value={dispatch}>

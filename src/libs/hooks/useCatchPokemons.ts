@@ -1,5 +1,5 @@
 import { useEffect, useContext, useState } from "react";
-import { IPokemon, IMyPokemon } from "@interfaces";
+import { IPokemon } from "@interfaces";
 import {
   DispatchContext,
   MyPokemonsContext,
@@ -34,7 +34,10 @@ export const useCatchPokemon = (pokemon?: IPokemon) => {
     if (typeof pokemon !== "undefined") {
       dispatch({
         type: "CATCH_POKEMON",
-        payload: { name: pokemon.name, id: pokemon.id, nickName },
+        payload: {
+          pokemon: pokemon,
+          owned: { nickName, timeStamp: window.performance.now() },
+        },
       });
     }
   };

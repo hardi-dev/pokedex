@@ -1,4 +1,14 @@
-import { IPokemon, IMyPokemon } from "@interfaces";
+import {
+  IPokemon,
+  IMyPokemons,
+  IOwnedPokemon,
+  IOWnedPokemonFull,
+} from "@interfaces";
+
+export interface IMyPokemonParams {
+  pokemon: IPokemon;
+  owned: IOwnedPokemon;
+}
 
 export type TStatusCatchPokemon =
   | "loading"
@@ -8,14 +18,14 @@ export type TStatusCatchPokemon =
   | "saved";
 
 export type TMyPokemonsActions =
-  | { type: "CATCH_POKEMON"; payload?: IMyPokemon }
+  | { type: "CATCH_POKEMON"; payload?: IMyPokemonParams }
   | { type: "SET_CATCH_STATUS"; payload: TStatusCatchPokemon }
-  | { type: "RELEASE_POKEMON"; payload: IMyPokemon }
+  | { type: "RELEASE_POKEMON"; payload: IOWnedPokemonFull }
   | { type: "SET_SELECTED_POKEMON"; payload: IPokemon }
   | { type: "RESET_SELECTED_POKEMON" };
 
 export interface IMyPokemonsState {
   selectedPokemon?: IPokemon;
-  myPokemons: IMyPokemon[];
+  myPokemons: { [key: string]: IMyPokemons };
   catchStatus: TStatusCatchPokemon;
 }

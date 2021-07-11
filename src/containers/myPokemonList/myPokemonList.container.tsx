@@ -1,5 +1,5 @@
-import { FC, useContext } from "react";
-import { IMyPokemon } from "@interfaces";
+import { FC, useContext, Fragment, useState, useEffect } from "react";
+import { IOWnedPokemonFull, IOwnedPokemon } from "@interfaces";
 import { StyledListWrapper, StyledListItem } from "./myPokemonList.styles";
 import { CardCharacter } from "@comps";
 import Link from "next/link";
@@ -9,28 +9,42 @@ const MyPokemonList: FC = () => {
   const { myPokemons } = useContext(MyPokemonsContext);
   const dispatch = useContext(DispatchContext);
 
-  const handleOnRelease = (pokemon: IMyPokemon) => {
+  const handleOnRelease = (pokemon: IOWnedPokemonFull) => {
     dispatch({ type: "RELEASE_POKEMON", payload: pokemon });
   };
 
   return (
     <StyledListWrapper>
-      {myPokemons.length === 0 && (
+      {Object.keys(myPokemons).length === 0 && (
         <p>You don&apos;t have pokemons yet, please catch one</p>
       )}
 
-      {myPokemons.map(({ name, id, nickName }, idx) => (
-        <Link href={`detail/${name}`} key={idx} passHref>
-          <StyledListItem as="a">
-            <CardCharacter
-              name={nickName}
-              imgURL={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
-              nickName={name}
-              onRelease={() => handleOnRelease(myPokemons[idx])}
-              isMine
-            />
-          </StyledListItem>
-        </Link>
+      {Object.entries(myPokemons).map(([key, pokemons], idx) => (
+        <Fragment key={idx}>
+          {pokemons.owned.map((pokemon) => (
+            <Link
+              href={`detail/${key}`}
+              key={`pokemon-${pokemon.timeStamp}`}
+              passHref
+            >
+              <StyledListItem as="a">
+                <CardCharacter
+                  name={pokemon.nickName}
+                  imgURL={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemons.id}.png`}
+                  nickName={key}
+                  onRelease={() =>
+                    handleOnRelease({
+                      name: key,
+                      id: pokemons.id,
+                      ...pokemon,
+                    })
+                  }
+                  isMine
+                />
+              </StyledListItem>
+            </Link>
+          ))}
+        </Fragment>
       ))}
     </StyledListWrapper>
   );

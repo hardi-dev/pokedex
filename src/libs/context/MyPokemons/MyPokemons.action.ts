@@ -1,30 +1,60 @@
-import { IPokemon, IMyPokemon } from "@interfaces";
-import { IMyPokemonsState } from "./MyPokemons.types";
+import { IPokemon, IMyPokemons, IOWnedPokemonFull } from "@interfaces";
+import { IMyPokemonsState, IMyPokemonParams } from "./MyPokemons.types";
 
 export const catchPokemon = (
   state: IMyPokemonsState,
-  pokemon?: IMyPokemon
+  data?: IMyPokemonParams
 ): IMyPokemonsState => {
-  if (typeof pokemon === "undefined") {
+  if (typeof data === "undefined") {
     return { ...state };
   }
 
-  const currentList = [...state.myPokemons];
+  // Get All Pokemons
+  let existingMyPokemons: { [key: string]: IMyPokemons } = state.myPokemons;
+
+  let newPokemon = state.myPokemons[data.pokemon.name];
+
+  if (typeof newPokemon !== "undefined") {
+    // If Already have pokemon with same name, just push new one with differen NickName
+    newPokemon.owned = [...newPokemon.owned, data.owned];
+  } else {
+    // Else is a new name, then make new object for this pokemonl
+    console.log("test");
+    existingMyPokemons = {
+      ...existingMyPokemons,
+      [data.pokemon.name]: {
+        id: data.pokemon.id,
+        owned: [data.owned],
+      },
+    };
+  }
+
   return {
     ...state,
     catchStatus: "saved",
-    myPokemons: [...currentList, pokemon],
+    myPokemons: existingMyPokemons,
   };
 };
 
 export const releasePokemon = (
   state: IMyPokemonsState,
-  pokemon: IMyPokemon
+  pokemon: IOWnedPokemonFull
 ): IMyPokemonsState => {
-  const filteredMyPokemons = state.myPokemons.filter(
-    (myPokemon) => myPokemon.nickName != pokemon.nickName
+  // Get Previous My Pokemons State
+  let prevMyPokemonsState = state.myPokemons;
+
+  // Get Pokemons Want to release
+  let releasedPokemon = prevMyPokemonsState[pokemon.name];
+
+  // Return all nickname not want to release
+  releasedPokemon.owned = releasedPokemon.owned.filter(
+    (item) => item.nickName !== pokemon.nickName
   );
-  return { ...state, myPokemons: filteredMyPokemons };
+
+  // Set Released Pokemon new value
+  prevMyPokemonsState[pokemon.name] = releasedPokemon;
+
+  return { ...state, myPokemons: prevMyPokemonsState };
 };
 
 export const setSelectedPokemon = (
