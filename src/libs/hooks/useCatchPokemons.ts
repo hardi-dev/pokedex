@@ -34,7 +34,7 @@ export const useCatchPokemon = (pokemon?: IPokemon) => {
     if (typeof pokemon !== "undefined") {
       dispatch({
         type: "CATCH_POKEMON",
-        payload: { name: pokemon.name, nickName },
+        payload: { name: pokemon.name, id: pokemon.id, nickName },
       });
     }
   };

@@ -22,15 +22,3 @@ export const StyledListItem = styled.div`
     min-width: calc(100% / 4);
   }
 `;
-
-export const LoadMoreWrapper = styled.div`
-  padding: 2rem 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const LoadMoreLoading = styled.div`
-  color: ${({ theme }) => theme.color.green};
-  text-align: center;
-`;

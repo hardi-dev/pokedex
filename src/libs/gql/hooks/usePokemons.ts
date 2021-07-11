@@ -59,8 +59,6 @@ export const usePokemons = () => {
     });
   };
 
-  console.log("data", data);
-
   return {
     data,
     loading,

@@ -21,7 +21,11 @@ const Home: FC<Props> = () => {
   return (
     <MainLayout>
       <Container>
-        <PokemonList data={data?.pokemons.results || []} />
+        <PokemonList
+          data={data?.pokemons.results || []}
+          loading={loading}
+          fetchMore={fetchMore}
+        />
       </Container>
     </MainLayout>
   );

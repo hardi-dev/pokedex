@@ -13,10 +13,7 @@ export const catchPokemon = (
   return {
     ...state,
     catchStatus: "saved",
-    myPokemons: [
-      ...currentList,
-      { name: pokemon.name, nickName: pokemon.nickName },
-    ],
+    myPokemons: [...currentList, pokemon],
   };
 };
 
